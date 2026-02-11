@@ -1,13 +1,17 @@
-#include "MyForm.h"
+#include "LoginForm.h"
+#include "MainForm.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
 
-[STAThreadAttribute]
-int main(array<String^>^ args) {
-	Application::EnableVisualStyles();
-	Application::SetCompatibleTextRenderingDefault(false);
-	Lab5::MyForm form;
-	Application::Run(% form);
-	return 0;
+[STAThread]
+int main() {
+    Application::EnableVisualStyles();
+    Application::SetCompatibleTextRenderingDefault(false);
+
+    Project::LoginForm^ login = gcnew Project::LoginForm();
+    if (login->ShowDialog() == DialogResult::OK) {
+        Application::Run(gcnew Project::MainForm());
+    }
+    return 0;
 }
